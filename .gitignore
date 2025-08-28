@@ -1,0 +1,14 @@
+# Python
+venv/
+__pycache__/
+
+# Node
+node_modules/
+
+# Data (you should store these elsewhere or in Git LFS if really needed)
+*.csv
+*.xlsx
+*.parquet
+
+# Other
+.DS_Store
