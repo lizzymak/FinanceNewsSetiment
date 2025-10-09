@@ -20,10 +20,9 @@ app.add_middleware(
 )
 
 # Load vocab and model
-with open("vocab_dict.pkl", "rb") as f:
+with open("vocab.pkl", "rb") as f:
     vocab = pickle.load(f)
 vocab_size = len(vocab)
-print(vocab_size)
 num_classes = 3
 embed_dim = 50
 
@@ -32,10 +31,7 @@ model = TextClassifier(vocab_size=vocab_size, embed_dim=embed_dim, num_classes=n
 model.load_state_dict(torch.load("sentiment_model.pth"))
 model.eval()
 
-
-
 important_words = ["profit", "loss", "earnings", "revenue", "merger", "acquisition", "downgrade", "lawsuit", "bankruptcy", "ipo", "interest", "rate"]
-
 
 class Headline(BaseModel):
     text: str
@@ -70,7 +66,7 @@ def prediction(text, model, vocab, max_len = 50):
 @app.post("/predict")
 def predict_sentiment(data: BrandRequest):
     API_KEY = "f726ca01832b44599b281c99e7a3d0b8"
-    query = "NVDA"
+    query = data.brand
     url = f"https://newsapi.org/v2/everything?q={query}&language=en&sortBy=publishedAt&apiKey={API_KEY}"
 
     response = requests.get(url).json()
