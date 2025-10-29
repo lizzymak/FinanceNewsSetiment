@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import torch
 import pickle
 import requests
+import os
 
 from .model import TextClassifier 
 
@@ -19,16 +20,27 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load vocab and model
-with open("vocab.pkl", "rb") as f:
+
+
+BASE_DIR = os.path.dirname(__file__)
+VOCAB_PATH = os.path.join(BASE_DIR, "vocab.pkl")
+MODEL_PATH = os.path.join(BASE_DIR, "sentiment_model.pth") 
+
+with open(VOCAB_PATH, "rb") as f:
     vocab = pickle.load(f)
+
+# Load vocab and model
+#with open("vocab.pkl", "rb") as f:
+    #vocab = pickle.load(f)
+
 vocab_size = len(vocab)
 num_classes = 3
 embed_dim = 50
 
 
 model = TextClassifier(vocab_size=vocab_size, embed_dim=embed_dim, num_classes=num_classes)
-model.load_state_dict(torch.load("sentiment_model.pth"))
+#model.load_state_dict(torch.load("sentiment_model.pth"))
+model.load_state_dict(torch.load(MODEL_PATH, map_location="cpu"))
 model.eval()
 
 important_words = ["profit", "loss", "earnings", "revenue", "merger", "acquisition", "downgrade", "lawsuit", "bankruptcy", "ipo", "interest", "rate"]
