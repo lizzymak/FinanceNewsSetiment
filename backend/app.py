@@ -4,7 +4,7 @@ import torch
 import pickle
 import requests
 
-from model import TextClassifier 
+from .model import TextClassifier 
 
 from fastapi.middleware.cors import CORSMiddleware
 
