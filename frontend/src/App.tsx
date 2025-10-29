@@ -26,11 +26,17 @@ function App() {
 
   return (
     <div className="App">
-      <h1>News setiment analyzer</h1>
-      <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Enter company or topic..." />
-      <button onClick={predict}>Analyze</button>
-      <h2></h2>
-      <ul>
+      <div className='App-header'>
+        <h1>News setiment analyzer</h1>
+      </div>
+
+      <div className='searchSection'>
+        <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Enter company or topic..." />
+        <button onClick={predict}>Analyze</button>
+      </div>
+      
+
+      <ul className='listSection'>
         {results.map((item, idx) => (
           <li key={idx}>
             <strong>{item.text}</strong> - Prediction: {item.prediction}
