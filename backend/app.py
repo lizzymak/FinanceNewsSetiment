@@ -20,8 +20,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-
 BASE_DIR = os.path.dirname(__file__)
 VOCAB_PATH = os.path.join(BASE_DIR, "vocab.pkl")
 MODEL_PATH = os.path.join(BASE_DIR, "sentiment_model.pth") 
