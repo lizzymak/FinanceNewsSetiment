@@ -2,7 +2,7 @@
 
 A web app that analyzes live business headlines for a user’s chosen company and predicts whether each headline is positive, negative, or neutral.
 
-👉 **[[Live Demo](https://news-setiment-analyzer.vercel.app/)  ]
+👉 **[Live Demo](https://news-setiment-analyzer.vercel.app/)**
 
 ---
 
